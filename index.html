@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" type="text/css" href="res/bootstrap.css" />
+		<script src="res/jquery.js"></script>
+		<script src="res/bootstrap.js"></script>
+		<script src="jquery.autoSave.js"></script>
+		<title>autosave</title>
+		<style type="text/css">textarea{border-radius: 15px!important}.alert.alert-info {border-radius: 10px;}.row {margin: 0}</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<div id="savetips" class="navbar-brand" style="display:inline-block;"><span class="Message" style="color:#ccc"></span></div>
+				</div>
+			</div><!-- /.container-fluid -->
+		</nav>
+
+		<center>
+			<h1>autoSave – A jQuery Plugin</h1>
+			<p>自动保存在input和textarea中输入的内容</p>
+
+			<br>
+
+			<div class="row">
+				<textarea class="form-control" rows="6" id="demoTextArea" placeholder="写点什么……" style="margin:20px;width: 80%;resize: none;" ></textarea>
+			</div>
+
+			<div class="row" style="margin-top:10px;">
+				<button class="btn btn-link" id="clear">清除</button>
+				&#12288;
+				<button class="btn btn-link" id="refresh">刷新页面</button>
+			</div>
+
+			<script>  
+			var demoText = $("#demoTextArea");
+
+			if (localStorage) {  
+				var content = localStorage.getItem("autoSave");
+				if (content) {
+						demoText.text(content);
+				}
+			}
+
+			demoText.autoSave(function() {  
+				var time = showTime();
+				$(".Message").text("草稿已于" + time + "自动保存");
+			}, 500);
+
+			$("#refresh").click(function() {
+				location.reload(true);
+			});
+
+			$("#clear").click(function() {
+				localStorage.clear();
+				location.reload(true);
+			});
+			</script>
+				<br>
+				<br>
+			 	jQuery autoSave v1.0.4 - 2017-06-20
+			 	<br>
+			 	<br>
+ 				Original author - <a href="http://geniuscarrier.com">Yang Zhao</a> © 2013-2017
+			 	<br>
+			 	Modified by - <a href="https://github.com/df7c5117">df7c5117</a> © 2017
+			 	<br>
+				<a href=" http://www.opensource.org/licenses/mit-license.php">MIT license</a>
+		</center>
+	</body>
+	
+</html>

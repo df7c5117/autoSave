@@ -25,20 +25,20 @@ How to use:
 	<span id="msg"></span>
 	```
 
-4. Fire plugin using jQuery selector
+4. Use plugin by following script
 
 	```
-	$(function() {
-		$("#tabs").autoSave(callback, ms);
-	});
-	```
-	ms allows to delay callback function. default value is 2 seconds.
+	var txtContent = $("#text");
 
-5. Example
+	if (localStorage) {  
+		var content = localStorage.getItem("autoSave");
+		if (content) {
+				txtContent.text(content);
+		}
+	}
 
-	```
-	$("#text").autoSave(function() {
-		var time = new Date().getTime();
+	txtContent.autoSave(function() {
+		var time = showTime();
 		$("#msg").text("Draft Autosaved " + time);
 	}, 500);
 	```
